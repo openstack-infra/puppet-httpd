@@ -1,3 +1,16 @@
+# Class: apache::mod::wsgi
+#
+# This class installs wsgi for Apache
+#
+# Parameters:
+#
+# Actions:
+# - Install Apache wsgi package
+#
+# Requires:
+#
+# Sample Usage:
+#
 class apache::mod::wsgi {
   include apache
 

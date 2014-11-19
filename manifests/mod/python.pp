@@ -1,3 +1,16 @@
+# Class: apache::mod::python
+#
+# This class installs Python for Apache
+#
+# Parameters:
+#
+# Actions:
+# - Install Apache Python package
+#
+# Requires:
+#
+# Sample Usage:
+#
 class apache::mod::python {
   include apache
 
