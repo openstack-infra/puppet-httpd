@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Jeremy Stanley <fungi@yuggoth.org>
+Workflow+1: Jeremy Stanley <fungi@yuggoth.org>
+Code-Review+1: Spencer Krum <krum.spencer@gmail.com>
+Submitted-by: Jenkins
+Submitted-at: Thu, 20 Nov 2014 22:29:16 +0000
+Reviewed-on: https://review.openstack.org/135781
+Project: openstack-infra/puppet-httpd
+Branch: refs/heads/master
