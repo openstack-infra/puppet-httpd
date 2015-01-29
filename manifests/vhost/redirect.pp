@@ -1,4 +1,4 @@
-# Define: apache::vhost::redirect
+# Define: httpd::vhost::redirect
 #
 # This class will create a vhost that does nothing more than redirect to a
 # given location
@@ -17,21 +17,21 @@
 #
 # Sample Usage:
 #
-define apache::vhost::redirect (
+define httpd::vhost::redirect (
     $port,
     $dest,
     $priority      = '10',
     $serveraliases = '',
-    $template      = 'apache/vhost-redirect.conf.erb',
+    $template      = 'httpd/vhost-redirect.conf.erb',
     $vhost_name    = '*'
   ) {
 
-  include apache
+  include httpd
 
   $srvname = $name
 
   file { "${priority}-${name}":
-    path    => "${apache::params::vdir}/${priority}-${name}",
+    path    => "${httpd::params::vdir}/${priority}-${name}",
     content => template($template),
     owner   => 'root',
     group   => 'root',

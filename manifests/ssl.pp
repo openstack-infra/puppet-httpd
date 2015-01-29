@@ -1,4 +1,4 @@
-# Class: apache::ssl
+# Class: httpd::ssl
 #
 # This class installs Apache SSL capabilities
 #
@@ -12,15 +12,15 @@
 #
 # Sample Usage:
 #
-class apache::ssl {
+class httpd::ssl {
 
-  include apache
+  include httpd
 
   case $::operatingsystem {
     'centos', 'fedora', 'redhat', 'scientific': {
       package { 'apache_ssl_package':
         ensure  => installed,
-        name    => $apache::params::ssl_package,
+        name    => $httpd::params::ssl_package,
         require => Package['httpd'],
       }
     }
@@ -28,7 +28,7 @@ class apache::ssl {
       a2mod { 'ssl': ensure => present, }
     }
     default: {
-      fail( "${::operatingsystem} not defined in apache::ssl.")
+      fail( "${::operatingsystem} not defined in httpd::ssl.")
     }
   }
 }

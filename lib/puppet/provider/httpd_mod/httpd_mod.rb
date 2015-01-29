@@ -1,4 +1,4 @@
-Puppet::Type.type(:a2mod).provide(:a2mod) do
+Puppet::Type.type(:httpd_mod).provide(:httpd_mod) do
     desc "Manage Apache 2 modules on Debian and Ubuntu"
 
     optional_commands :encmd => "a2enmod"
