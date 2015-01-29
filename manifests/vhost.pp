@@ -1,4 +1,4 @@
-# Definition: apache::vhost
+# Definition: httpd::vhost
 #
 # This class installs Apache Virtual Hosts
 #
@@ -19,32 +19,32 @@
 # - Install Apache Virtual Hosts
 #
 # Requires:
-# - The apache class
+# - The httpd class
 #
 # Sample Usage:
-#  apache::vhost { 'site.name.fqdn':
+#  httpd::vhost { 'site.name.fqdn':
 #    priority => '20',
 #    port => '80',
 #    docroot => '/path/to/docroot',
 #  }
 #
-define apache::vhost(
+define httpd::vhost(
     $port,
     $docroot,
     $configure_firewall = true,
-    $ssl                = $apache::params::ssl,
-    $template           = $apache::params::template,
-    $priority           = $apache::params::priority,
-    $servername         = $apache::params::servername,
-    $serveraliases      = $apache::params::serveraliases,
-    $auth               = $apache::params::auth,
-    $redirect_ssl       = $apache::params::redirect_ssl,
-    $options            = $apache::params::options,
-    $apache_name        = $apache::params::apache_name,
-    $vhost_name         = $apache::params::vhost_name
+    $ssl                = $httpd::params::ssl,
+    $template           = $httpd::params::template,
+    $priority           = $httpd::params::priority,
+    $servername         = $httpd::params::servername,
+    $serveraliases      = $httpd::params::serveraliases,
+    $auth               = $httpd::params::auth,
+    $redirect_ssl       = $httpd::params::redirect_ssl,
+    $options            = $httpd::params::options,
+    $apache_name        = $httpd::params::apache_name,
+    $vhost_name         = $httpd::params::vhost_name
   ) {
 
-  include apache
+  include httpd
 
   if $servername == '' {
     $srvname = $name
@@ -53,21 +53,21 @@ define apache::vhost(
   }
 
   if $ssl == true {
-    include apache::ssl
+    include httpd::ssl
   }
 
   # Since the template will use auth, redirect to https requires mod_rewrite
   if $redirect_ssl == true {
     case $::operatingsystem {
       'debian','ubuntu': {
-        A2mod <| title == 'rewrite' |>
+        httpd_mod <| title == 'rewrite' |>
       }
       default: { }
     }
   }
 
   file { "${priority}-${name}.conf":
-      path    => "${apache::params::vdir}/${priority}-${name}.conf",
+      path    => "${httpd::params::vdir}/${priority}-${name}.conf",
       content => template($template),
       owner   => 'root',
       group   => 'root',
