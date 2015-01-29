@@ -1,4 +1,4 @@
-# Class: apache
+# Class: httpd
 #
 # This class installs Apache
 #
@@ -12,24 +12,24 @@
 #
 # Sample Usage:
 #
-class apache {
-  include apache::params
+class httpd {
+  include httpd::params
 
   package { 'httpd':
     ensure => installed,
-    name   => $apache::params::apache_name,
+    name   => $httpd::params::apache_name,
   }
 
   service { 'httpd':
     ensure    => running,
-    name      => $apache::params::apache_name,
+    name      => $httpd::params::apache_name,
     enable    => true,
     subscribe => Package['httpd'],
   }
 
   file { 'httpd_vdir':
     ensure  => directory,
-    path    => $apache::params::vdir,
+    path    => $httpd::params::vdir,
     recurse => true,
     purge   => true,
     notify  => Service['httpd'],

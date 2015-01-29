@@ -1,4 +1,4 @@
-# Class: apache::mod::wsgi
+# Class: httpd::mod::wsgi
 #
 # This class installs wsgi for Apache
 #
@@ -11,16 +11,16 @@
 #
 # Sample Usage:
 #
-class apache::mod::wsgi {
-  include apache
+class httpd::mod::wsgi {
+  include httpd
 
   package { 'mod_wsgi_package':
     ensure  => installed,
-    name    => $apache::params::mod_wsgi_package,
+    name    => $httpd::params::mod_wsgi_package,
     require => Package['httpd'];
   }
 
-  a2mod { 'wsgi': ensure => present; }
+  httpd_mod { 'wsgi': ensure => present; }
 
 }
 
