@@ -11,11 +11,11 @@
 #
 # Sample Usage:
 #
-class apache::dev {
-  include apache::params
+class httpd::dev {
+  include httpd::params
 
   package { 'apache_dev_package':
     ensure => installed,
-    name   => $apache::params::apache_dev,
+    name   => $httpd::params::apache_dev,
   }
 }
