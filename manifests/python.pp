@@ -1,4 +1,4 @@
-# Class: apache::python
+# Class: httpd::python
 #
 # This class installs Python for Apache
 #
@@ -12,14 +12,14 @@
 #
 # Sample Usage:
 #
-class apache::python {
-  include apache::params
-  include apache
+class httpd::python {
+  include httpd::params
+  include httpd
 
   package { 'apache_python_package':
     ensure => present,
     name   => $apache::params::python_package,
   }
-  a2mod { 'python': ensure => present, }
+  httpd_mod { 'python': ensure => present, }
 
 }

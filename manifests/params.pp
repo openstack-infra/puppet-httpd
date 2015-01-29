@@ -1,4 +1,4 @@
-# Class: apache::params
+# Class: httpd::params
 #
 # This class manages Apache parameters
 #
@@ -17,7 +17,7 @@
 #
 # Sample Usage:
 #
-class apache::params {
+class httpd::params {
 
   $user          = 'www-data'
   $group         = 'www-data'
