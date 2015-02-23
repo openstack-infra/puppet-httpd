@@ -1,4 +1,4 @@
-# Define: apache::vhost::proxy
+# Define: httpd::vhost::proxy
 #
 # Configures an apache vhost that will only proxy requests
 #
@@ -18,29 +18,29 @@
 #
 # Sample Usage:
 #
-define apache::vhost::proxy (
+define httpd::vhost::proxy (
     $port,
     $dest,
     $priority      = '10',
-    $template      = 'apache/vhost-proxy.conf.erb',
+    $template      = 'httpd/vhost-proxy.conf.erb',
     $servername    = '',
     $serveraliases = '',
     $ssl           = false,
     $vhost_name    = '*'
   ) {
 
-  include apache
+  include httpd
 
-  $apache_name = $apache::params::apache_name
-  $ssl_path = $apache::params::ssl_path
+  $apache_name = $httpd::params::apache_name
+  $ssl_path = $httpd::params::ssl_path
   $srvname = $name
 
   if $ssl == true {
-    include apache::ssl
+    include httpd::ssl
   }
 
   file { "${priority}-${name}":
-    path    => "${apache::params::vdir}/${priority}-${name}",
+    path    => "${httpd::params::vdir}/${priority}-${name}",
     content => template($template),
     owner   => 'root',
     group   => 'root',

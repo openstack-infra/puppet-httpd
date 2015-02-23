@@ -1,4 +1,4 @@
-# Class: apache::php
+# Class: httpd::php
 #
 # This class installs PHP for Apache
 #
@@ -12,11 +12,11 @@
 #
 # Sample Usage:
 #
-class apache::php {
-  include apache::params
+class httpd::php {
+  include httpd::params
 
   package { 'apache_php_package':
     ensure => present,
-    name   => $apache::params::php_package,
+    name   => $httpd::params::php_package,
   }
 }
