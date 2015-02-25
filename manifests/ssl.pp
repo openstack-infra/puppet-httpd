@@ -25,7 +25,7 @@ class httpd::ssl {
       }
     }
     'ubuntu', 'debian': {
-      a2mod { 'ssl': ensure => present, }
+      httpd_mod { 'ssl': ensure => present, }
     }
     default: {
       fail( "${::operatingsystem} not defined in httpd::ssl.")
