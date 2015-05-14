@@ -67,7 +67,7 @@ is a sub project under the OpenStack umbrella, and so has more process
 associated with it than your typical Puppet module.
 
 This module is under the direction of the openstack-infra team.
-Website: http://ci.openstack.org/
+Website: http://docs.openstack.org/infra/system-config/
 
 The official git repository is at:
 https://git.openstack.org/cgit/openstack-infra/puppet-httpd/
