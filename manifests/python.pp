@@ -3,7 +3,7 @@
 # This class installs Python for Apache
 #
 # Parameters:
-# - $php_package
+# - $python_package
 #
 # Actions:
 #   - Install Apache Python package
