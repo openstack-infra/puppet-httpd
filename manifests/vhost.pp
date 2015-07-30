@@ -44,16 +44,16 @@ define httpd::vhost(
     $vhost_name         = $httpd::params::vhost_name
   ) {
 
-  include httpd
+  include ::httpd
 
-  if $servername == '' {
+  if $servername == undef {
     $srvname = $name
   } else {
     $srvname = $servername
   }
 
   if $ssl == true {
-    include httpd::ssl
+    include ::httpd::ssl
   }
 
   # Since the template will use auth, redirect to https requires mod_rewrite

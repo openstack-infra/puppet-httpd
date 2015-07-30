@@ -24,8 +24,8 @@ class httpd::params {
   $ssl           = true
   $template      = 'httpd/vhost-default.conf.erb'
   $priority      = '25'
-  $servername    = ''
-  $serveraliases = ''
+  $servername    = undef
+  $serveraliases = undef
   $auth          = false
   $redirect_ssl  = false
   $options       = 'Indexes FollowSymLinks MultiViews'

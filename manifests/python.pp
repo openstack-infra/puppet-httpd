@@ -13,8 +13,8 @@
 # Sample Usage:
 #
 class httpd::python {
-  include httpd::params
-  include httpd
+  include ::httpd::params
+  include ::httpd
 
   package { 'apache_python_package':
     ensure => present,

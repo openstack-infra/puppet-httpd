@@ -21,12 +21,12 @@ define httpd::vhost::redirect (
     $port,
     $dest,
     $priority      = '10',
-    $serveraliases = '',
+    $serveraliases = undef,
     $template      = 'httpd/vhost-redirect.conf.erb',
     $vhost_name    = '*'
   ) {
 
-  include httpd
+  include ::httpd
 
   $srvname = $name
 

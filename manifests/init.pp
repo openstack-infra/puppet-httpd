@@ -13,7 +13,7 @@
 # Sample Usage:
 #
 class httpd {
-  include httpd::params
+  include ::httpd::params
 
   package { 'httpd':
     ensure => installed,
