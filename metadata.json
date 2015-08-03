@@ -7,5 +7,7 @@
   "source": "git://git.openstack.org/openstack-infra/puppet-httpd.git",
   "project_page": "http://docs.openstack.org/infra/system-config/",
   "issues_url": "https://storyboard.openstack.org/#!/project/754",
-  "dependencies": []
+  "dependencies": [
+    { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4 <= 1.7.0" }
+  ]
 }
