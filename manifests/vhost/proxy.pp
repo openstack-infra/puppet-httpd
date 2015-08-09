@@ -33,7 +33,11 @@ define httpd::vhost::proxy (
 
   $apache_name = $httpd::params::apache_name
   $ssl_path = $httpd::params::ssl_path
-  $srvname = $name
+  if $servername == '' {
+    $srvname = $name
+  } else {
+    $srvname = $servername
+  }
 
   if $ssl == true {
     include httpd::ssl
