@@ -12,7 +12,7 @@
 # Sample Usage:
 #
 class httpd::dev {
-  include httpd::params
+  include ::httpd::params
 
   package { 'apache_dev_package':
     ensure => installed,

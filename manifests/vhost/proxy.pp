@@ -23,24 +23,24 @@ define httpd::vhost::proxy (
     $dest,
     $priority      = '10',
     $template      = 'httpd/vhost-proxy.conf.erb',
-    $servername    = '',
-    $serveraliases = '',
+    $servername    = undef,
+    $serveraliases = undef,
     $ssl           = false,
     $vhost_name    = '*'
   ) {
 
-  include httpd
+  include ::httpd
 
   $apache_name = $httpd::params::apache_name
   $ssl_path = $httpd::params::ssl_path
-  if $servername == '' {
+  if $servername == undef {
     $srvname = $name
   } else {
     $srvname = $servername
   }
 
   if $ssl == true {
-    include httpd::ssl
+    include ::httpd::ssl
   }
 
   file { "${priority}-${name}":

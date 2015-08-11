@@ -14,7 +14,7 @@
 #
 class httpd::ssl {
 
-  include httpd
+  include ::httpd
 
   case $::operatingsystem {
     'centos', 'fedora', 'redhat', 'scientific': {

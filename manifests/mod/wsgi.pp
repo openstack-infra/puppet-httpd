@@ -12,7 +12,7 @@
 # Sample Usage:
 #
 class httpd::mod::wsgi {
-  include httpd
+  include ::httpd
 
   package { 'mod_wsgi_package':
     ensure  => installed,

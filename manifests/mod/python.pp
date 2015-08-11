@@ -12,7 +12,7 @@
 # Sample Usage:
 #
 class httpd::mod::python {
-  include httpd
+  include ::httpd
 
   package { 'mod_python_package':
     ensure  => installed,

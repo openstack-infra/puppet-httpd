@@ -13,7 +13,7 @@
 # Sample Usage:
 #
 class httpd::php {
-  include httpd::params
+  include ::httpd::params
 
   package { 'apache_php_package':
     ensure => present,
