@@ -14,6 +14,7 @@
 # - The $serveraliases of the site
 # - The $options for the given vhost
 # - The $vhost_name for name based virtualhosting, defaulting to *
+# - The $content of the vhost (overrides template)
 #
 # Actions:
 # - Install Apache Virtual Hosts
@@ -41,7 +42,8 @@ define httpd::vhost(
     $redirect_ssl       = $httpd::params::redirect_ssl,
     $options            = $httpd::params::options,
     $apache_name        = $httpd::params::apache_name,
-    $vhost_name         = $httpd::params::vhost_name
+    $vhost_name         = $httpd::params::vhost_name,
+    $content            = undef,
   ) {
 
   include ::httpd
@@ -66,9 +68,16 @@ define httpd::vhost(
     }
   }
 
+  # Proccess content or template
+  if $content == undef {
+    content_real = $content
+  } else {
+    content_real = template($template)
+  }
+
   file { "${priority}-${name}.conf":
       path    => "${httpd::params::vdir}/${priority}-${name}.conf",
-      content => template($template),
+      content => $content_real,
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
