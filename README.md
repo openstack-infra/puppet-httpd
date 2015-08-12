@@ -38,8 +38,37 @@ TODO
 ## Defined types
 
 
-TODO
+httpd::vhost
 
+
+The vhost defined type can take a 'template' string which is a
+template uri for puppet to evaluate. 
+
+::httpd::vhost { 'status.openstack.org':
+  port     => 80,
+  priority => '50',
+  docroot  => '/srv/static/status',
+  template => 'openstack_project/status.vhost.erb',
+  require  => File['/srv/static/status'],
+}
+
+The vhost can also take a 'content' string which will be the content of the vhost.
+This is preferable because puppet then evaluates the template in the scope
+of the class including the vhost template.
+
+$port = 80
+$docroot = '/srv/static/status'
+$vhost_name = 'status.openstack.org'
+::httpd::vhost { $vhost_name:
+  port     => $port,
+  priority => '50',
+  docroot  => $docroot,
+  content  => template('openstack_project/status.vhost.erb'),
+  require  => File['/srv/static/status'],
+}
+
+These values need to be set in variables so that the template function can pick
+them up. This new syntax is experimental and should be improved upon.
 
 # License
 
