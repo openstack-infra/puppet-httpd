@@ -6,6 +6,7 @@
 #
 # Actions:
 # - Install Apache Python package
+# - Enable mod_python when on Debian or Ubuntu
 #
 # Requires:
 #
@@ -20,8 +21,7 @@ class httpd::mod::python {
     require => Package['httpd'];
   }
 
-  httpd_mod { 'python': ensure => present; }
-
+  if $::osfamily == 'Debian' {
+    httpd_mod { 'python': ensure => present; }
+  }
 }
-
-
