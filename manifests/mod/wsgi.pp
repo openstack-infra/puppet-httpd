@@ -6,6 +6,7 @@
 #
 # Actions:
 # - Install Apache wsgi package
+# - Enable mod_wsgi when on Debian or Ubuntu
 #
 # Requires:
 #
@@ -20,7 +21,7 @@ class httpd::mod::wsgi {
     require => Package['httpd'];
   }
 
-  httpd_mod { 'wsgi': ensure => present; }
-
+  if $::osfamily == 'Debian' {
+    httpd_mod { 'wsgi': ensure => present; }
+  }
 }
-

@@ -58,12 +58,7 @@ define httpd::vhost(
 
   # Since the template will use auth, redirect to https requires mod_rewrite
   if $redirect_ssl == true {
-    case $::operatingsystem {
-      'debian','ubuntu': {
-        Httpd_mod <| title == 'rewrite' |>
-      }
-      default: { }
-    }
+    include ::httpd::mod::rewrite
   }
 
   file { "${priority}-${name}.conf":
