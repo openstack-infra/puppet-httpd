@@ -20,7 +20,8 @@ class httpd::mod::wsgi {
     require => Package['httpd'];
   }
 
-  httpd_mod { 'wsgi': ensure => present; }
-
+  if $::operatingsystem in ['ubuntu', 'debian'] {
+    httpd_mod { 'wsgi': ensure => present; }
+  }
 }
 
