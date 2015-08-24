@@ -20,8 +20,9 @@ class httpd::mod::python {
     require => Package['httpd'];
   }
 
-  httpd_mod { 'python': ensure => present; }
-
+  if $::operatingsystem in ['ubuntu', 'debian'] {
+    httpd_mod { 'python': ensure => present; }
+  }
 }
 
 
