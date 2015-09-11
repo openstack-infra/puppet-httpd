@@ -13,6 +13,7 @@
 #
 class httpd::mod::python {
   include ::httpd
+  include ::httpd::mod
 
   package { 'mod_python_package':
     ensure  => installed,
@@ -20,7 +21,7 @@ class httpd::mod::python {
     require => Package['httpd'];
   }
 
-  httpd_mod { 'python': ensure => present; }
+  httpd::mod { 'python': ensure => present; }
 
 }
 

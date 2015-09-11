@@ -15,11 +15,11 @@
 class httpd::python {
   include ::httpd::params
   include ::httpd
+  include ::httpd::mod
 
-  package { 'apache_python_package':
+  package { $httpd::params::mod_python_package:
     ensure => present,
-    name   => $apache::params::python_package,
   }
-  httpd_mod { 'python': ensure => present, }
+  httpd::mod { 'python': ensure => present, }
 
 }

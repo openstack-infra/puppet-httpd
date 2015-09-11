@@ -13,6 +13,7 @@
 #
 class httpd::mod::wsgi {
   include ::httpd
+  include ::httpd::mod
 
   package { 'mod_wsgi_package':
     ensure  => installed,
@@ -20,7 +21,7 @@ class httpd::mod::wsgi {
     require => Package['httpd'];
   }
 
-  httpd_mod { 'wsgi': ensure => present; }
+  httpd::mod { 'wsgi': ensure => present; }
 
 }
 

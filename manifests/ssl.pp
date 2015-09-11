@@ -15,6 +15,7 @@
 class httpd::ssl {
 
   include ::httpd
+  include ::httpd::mod
 
   case $::operatingsystem {
     'centos', 'fedora', 'redhat', 'scientific': {
@@ -25,7 +26,7 @@ class httpd::ssl {
       }
     }
     'ubuntu', 'debian': {
-      httpd_mod { 'ssl': ensure => present, }
+      httpd::mod { 'ssl': ensure => present, }
     }
     default: {
       fail( "${::operatingsystem} not defined in httpd::ssl.")
