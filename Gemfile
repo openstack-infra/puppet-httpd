@@ -13,7 +13,9 @@ group :development, :test do
 
   # Puppet 4.x related lint checks
   gem 'puppet-lint-unquoted_string-check'
-  gem 'puppet-lint-empty_string-check'
+  #The puppet-gerrit module makes too much use of empty string defaults
+  #so disable this check for now
+  #gem 'puppet-lint-empty_string-check'
   gem 'puppet-lint-leading_zero-check'
   gem 'puppet-lint-variable_contains_upcase'
   gem 'puppet-lint-spaceship_operator_without_tag-check'
@@ -24,7 +26,10 @@ group :development, :test do
   else
     gem 'puppet', '~> 3.0', :require => false
   end
+end
 
+group :system_tests do
+  gem 'beaker-rspec', :require => false
 end
 
 # vim:ft=ruby
