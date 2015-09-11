@@ -47,7 +47,7 @@ class httpd::params {
       $mod_python_package = 'libapache2-mod-python'
       $mod_wsgi_package = 'libapache2-mod-wsgi'
       $ssl_package = 'apache-ssl'
-      $apache_dev  = ['libaprutil1-dev', 'libapr1-dev', 'apache2-prefork-dev']
+      $apache_dev  = ['libaprutil1-dev', 'libapr1-dev', 'apache2-dev']
       $vdir = '/etc/apache2/sites-enabled/'
     }
     default: {
