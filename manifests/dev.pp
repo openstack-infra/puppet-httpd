@@ -14,8 +14,7 @@
 class httpd::dev {
   include ::httpd::params
 
-  package { 'apache_dev_package':
+  package { $httpd::params::apache_dev:
     ensure => installed,
-    name   => $httpd::params::apache_dev,
   }
 }
