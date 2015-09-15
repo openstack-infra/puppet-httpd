@@ -20,7 +20,7 @@ class httpd::mod::python {
     require => Package['httpd'];
   }
 
-  httpd_mod { 'python': ensure => present; }
+  httpd::mod { 'python': ensure => present; }
 
 }
 
