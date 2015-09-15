@@ -20,7 +20,7 @@ class httpd::mod::wsgi {
     require => Package['httpd'];
   }
 
-  httpd_mod { 'wsgi': ensure => present; }
+  httpd::mod { 'wsgi': ensure => present; }
 
 }
 
