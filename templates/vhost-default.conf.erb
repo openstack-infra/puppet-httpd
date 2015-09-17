@@ -17,6 +17,7 @@ NameVirtualHost <%= @vhost_name %>:<%= @port %>
     AllowOverride None
     Order allow,deny
     allow from all
+    Satisfy any
   </Directory>
   ErrorLog /var/log/<%= scope.lookupvar("httpd::params::apache_name") %>/<%= @name %>_error.log
   LogLevel warn
