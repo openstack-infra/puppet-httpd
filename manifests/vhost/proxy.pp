@@ -43,8 +43,8 @@ define httpd::vhost::proxy (
     include ::httpd::ssl
   }
 
-  file { "${priority}-${name}":
-    path    => "${httpd::params::vdir}/${priority}-${name}",
+  file { "${priority}-${name}.conf":
+    path    => "${httpd::params::vdir}/${priority}-${name}.conf",
     content => template($template),
     owner   => 'root',
     group   => 'root',
