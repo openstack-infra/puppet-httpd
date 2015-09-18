@@ -14,4 +14,19 @@ describe 'required services' do
   describe command('a2query -m ssl'), :if => ['debian', 'ubuntu'].include?(os[:family]) do
     its(:stdout) { should match 'enabled' }
   end
+
+  describe 'vhosts' do
+    describe command('curl --verbose http://localhost') do
+      its(:stdout) { should include 'Index of /' }
+    end
+
+    describe command('curl --verbose -H "Host: openstack-proxy" http://localhost') do
+      its(:stdout) { should include 'https://review.openstack.org' }
+    end
+
+    describe command('curl --verbose -H "Host: openstack-redirect" http://localhost') do
+      its(:stdout) { should include '302' }
+      its(:stdout) { should include 'http://www.openstack.org' }
+    end
+  end
 end

@@ -31,6 +31,9 @@ define httpd::vhost::proxy (
 
   include ::httpd
 
+  httpd::mod { 'proxy': ensure => present; }
+  httpd::mod { 'proxy_http': ensure => present; }
+
   $apache_name = $httpd::params::apache_name
   $ssl_path = $httpd::params::ssl_path
   if $servername == undef {
@@ -43,8 +46,8 @@ define httpd::vhost::proxy (
     include ::httpd::ssl
   }
 
-  file { "${priority}-${name}":
-    path    => "${httpd::params::vdir}/${priority}-${name}",
+  file { "${priority}-${name}.conf":
+    path    => "${httpd::params::vdir}/${priority}-${name}.conf",
     content => template($template),
     owner   => 'root',
     group   => 'root',
