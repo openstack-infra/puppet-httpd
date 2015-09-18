@@ -44,7 +44,12 @@ define httpd::vhost::proxy (
   }
 
   file { "${priority}-${name}":
-    path    => "${httpd::params::vdir}/${priority}-${name}",
+    ensure => absent,
+    path   => "${httpd::params::vdir}/${priority}-${name}",
+  }
+
+  file { "${priority}-${name}.conf":
+    path    => "${httpd::params::vdir}/${priority}-${name}.conf",
     content => template($template),
     owner   => 'root',
     group   => 'root',
