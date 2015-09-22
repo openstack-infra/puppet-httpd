@@ -18,7 +18,7 @@ class httpd::python {
 
   package { 'apache_python_package':
     ensure => present,
-    name   => $apache::params::python_package,
+    name   => $httpd::params::mod_python_package,
   }
   httpd_mod { 'python': ensure => present, }
 
