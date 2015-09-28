@@ -15,6 +15,9 @@ NameVirtualHost <%= @vhost_name %>:<%= @port %>
    <Proxy *>
      Order deny,allow
      Allow from all
+    <IfVersion >= 2.4>
+      Require all granted
+    </IfVersion>
    </Proxy>
    ProxyPass        / <%= @dest %>/
    ProxyPassReverse / <%= @dest %>/
