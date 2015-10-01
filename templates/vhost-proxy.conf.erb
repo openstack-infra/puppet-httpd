@@ -16,6 +16,12 @@ NameVirtualHost <%= @vhost_name %>:<%= @port %>
      Order deny,allow
      Allow from all
    </Proxy>
+
+<% if @proxyexclusions.is_a? Array %>
+        <% @proxyexclusions.each do |name| %><%= "    ProxyPass #{name} !\n" %><% end %>
+<% elsif @proxyexclusions != nil %>
+<%= "    ProxyPass #{@proxyexclusions} !" %>
+<% end %>
    ProxyPass        / <%= @dest %>/
    ProxyPassReverse / <%= @dest %>/
    ProxyPreserveHost On 
