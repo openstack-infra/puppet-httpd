@@ -26,7 +26,8 @@ define httpd::vhost::proxy (
     $servername    = undef,
     $serveraliases = undef,
     $ssl           = false,
-    $vhost_name    = '*'
+    $vhost_name    = '*',
+    $proxyexclusions = undef
   ) {
 
   include ::httpd
