@@ -28,6 +28,7 @@ define httpd::vhost::proxy (
     $ssl           = false,
     $vhost_name    = '*',
     $proxyexclusions = undef,
+    $docroot       = undef,
   ) {
 
   include ::httpd

@@ -26,6 +26,9 @@ NameVirtualHost <%= @vhost_name %>:<%= @port %>
    ProxyPassReverse / <%= @dest %>/
    ProxyPreserveHost On 
 
+<% if @proxyexclusions != nil and @docroot != nil %>
+   DocumentRoot <%= @docroot %>
+<% end %>
    ErrorLog /var/log/<%= scope.lookupvar("httpd::params::apache_name") %>/<%= @name %>_error.log
    LogLevel warn
    CustomLog /var/log/<%= scope.lookupvar("httpd::params::apache_name") %>/<%= @name %>_access.log combined
