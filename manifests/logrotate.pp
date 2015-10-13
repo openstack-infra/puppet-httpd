@@ -13,12 +13,12 @@ class httpd::logrotate (
   $prerotate = [
     "if [ -d /etc/logrotate.d/${::httpd::params::apache_name}-prerotate ]; then \\",
     "  run-parts /etc/logrotate.d/${::httpd::params::apache_name}-prerotate; \\",
-    'fi; \\',
+    'fi; \',
   ],
   $postrotate = [
     "if service ${::httpd::params::apache_name} status > /dev/null ; then \\",
     "  service ${::httpd::params::apache_name} reload > /dev/null; \\",
-    'fi; \\',
+    'fi; \',
   ],
   $firstaction = 'undef',
   $lastaction = 'undef',
