@@ -31,4 +31,14 @@ class httpd::ssl {
       fail( "${::operatingsystem} not defined in httpd::ssl.")
     }
   }
+
+  if $::lsbdistcodename == 'precise': {
+    # Unconditionally enable SNI on Ubuntu 12.04 (it's on by default in 14.04)
+    file { '/etc/apache2/conf.d/sni':
+      ensure  => present,
+      source  => 'puppet:///modules/httpd/sni',
+      notify  => Service['httpd'],
+      require => Package['httpd'],
+    }
+  }
 }
