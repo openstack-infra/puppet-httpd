@@ -13,12 +13,6 @@ httpd::vhost { 'localhost':
 # Enable a secondary port to test proxy and redirect modules
 $override = '
 Listen 8080
-<Directory "/html">
-  Options All
-  AllowOverride All
-  Require all granted
-  Allow from all
-</Directory>
 '
 file { "${::httpd::params::vdir}override.conf":
   content => $override,
