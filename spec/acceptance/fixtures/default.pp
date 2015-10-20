@@ -10,6 +10,48 @@ httpd::vhost { 'localhost':
   redirect_ssl => true,
 }
 
+# Enable a secondary port to test proxy and redirect modules
+$override = '
+Listen 8080
+<Directory "/html">
+  Options All
+  AllowOverride All
+  Require all granted
+  Allow from all
+</Directory>
+'
+file { "${::httpd::params::vdir}override.conf":
+  content => $override,
+}
+file { '/html':
+  ensure => directory,
+  mode   => '0755',
+}
+file { '/html/acceptance.txt':
+  ensure  => present,
+  mode    => '0644',
+  content => 'Acceptance Test',
+  require => File['/html'],
+}
+httpd::vhost { 'acceptance-server':
+  servername => 'localhost',
+  port       => 8080,
+  docroot    => '/html',
+  priority   => 50,
+}
+
+httpd::mod { 'proxy': ensure => present; }
+httpd::mod { 'proxy_http': ensure => present; }
+httpd::vhost::proxy { 'proxy':
+  port => 80,
+  dest => 'http://localhost:8080',
+}
+
+httpd::vhost::redirect { 'redirect':
+  port => 80,
+  dest => 'http://localhost:8080/acceptance.txt',
+}
+
 httpd::mod { 'rewrite':
   ensure => present,
 }
