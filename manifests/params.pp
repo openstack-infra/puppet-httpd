@@ -30,6 +30,8 @@ class httpd::params {
   $redirect_ssl  = false
   $options       = 'Indexes FollowSymLinks MultiViews'
   $vhost_name    = '*'
+  $aliases       = undef
+  $directories   = undef
 
   case $::operatingsystem {
     'centos', 'redhat', 'fedora', 'scientific': {
