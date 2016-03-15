@@ -30,6 +30,8 @@ class httpd::params {
   $template      = 'httpd/vhost-default.conf.erb'
   $user          = 'www-data'
   $vhost_name    = '*'
+  $aliases       = undef
+  $directories   = undef
 
   case $::operatingsystem {
     'centos', 'redhat', 'fedora', 'scientific': {

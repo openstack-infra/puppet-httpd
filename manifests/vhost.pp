@@ -42,6 +42,8 @@ define httpd::vhost(
     $ssl                = $httpd::params::ssl,
     $template           = $httpd::params::template,
     $vhost_name         = $httpd::params::vhost_name,
+    $aliases            = $httpd::params::aliases,
+    $directories        = $httpd::params::directories,
   ) {
 
   include ::httpd
@@ -72,6 +74,10 @@ define httpd::vhost(
     httpd::mod { 'version': ensure => present }
   }
 
+  if $aliases != undef and !defined(Httpd::Mod['alias']) {
+    httpd::mod { 'alias': ensure => present }
+  }
+
   file { "${priority}-${name}.conf":
       path    => "${httpd::params::vdir}/${priority}-${name}.conf",
       content => template($template),
@@ -93,4 +99,3 @@ define httpd::vhost(
     }
   }
 }
-
