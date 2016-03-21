@@ -19,16 +19,16 @@
 # Sample Usage:
 #
 define httpd::vhost::proxy (
-    $port,
     $dest,
-    $priority      = '10',
-    $template      = 'httpd/vhost-proxy.conf.erb',
-    $servername    = undef,
-    $serveraliases = undef,
-    $ssl           = false,
-    $vhost_name    = '*',
+    $port,
+    $docroot         = undef,
+    $priority        = '10',
     $proxyexclusions = undef,
-    $docroot       = undef,
+    $serveraliases   = undef,
+    $servername      = undef,
+    $ssl             = false,
+    $template        = 'httpd/vhost-proxy.conf.erb',
+    $vhost_name      = '*',
   ) {
 
   include ::httpd
