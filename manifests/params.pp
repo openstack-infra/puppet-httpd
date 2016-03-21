@@ -19,16 +19,16 @@
 #
 class httpd::params {
 
-  $user          = 'www-data'
+  $auth          = false
   $group         = 'www-data'
+  $options       = 'Indexes FollowSymLinks MultiViews'
+  $priority      = '25'
+  $redirect_ssl  = false
+  $serveraliases = undef
+  $servername    = undef
   $ssl           = true
   $template      = 'httpd/vhost-default.conf.erb'
-  $priority      = '25'
-  $servername    = undef
-  $serveraliases = undef
-  $auth          = false
-  $redirect_ssl  = false
-  $options       = 'Indexes FollowSymLinks MultiViews'
+  $user          = 'www-data'
   $vhost_name    = '*'
 
   case $::operatingsystem {

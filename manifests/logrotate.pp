@@ -1,7 +1,9 @@
 # == Class: httpd::logrotate
 #
 class httpd::logrotate (
-  $options = [
+  $firstaction = 'undef',
+  $lastaction  = 'undef',
+  $options     = [
       'daily',
       'missingok',
       'rotate 30',
@@ -10,16 +12,14 @@ class httpd::logrotate (
       'notifempty',
       'create 640 root adm',
   ],
-  $prerotate = [
+  $prerotate   = [
     "if [ -d /etc/logrotate.d/${::httpd::params::apache_name}-prerotate ]; then \\",
     "  run-parts /etc/logrotate.d/${::httpd::params::apache_name}-prerotate; fi ; \\",
   ],
-  $postrotate = [
+  $postrotate  = [
     "if service ${::httpd::params::apache_name} status > /dev/null; then \\",
     "  service ${::httpd::params::apache_name} reload > /dev/null; fi; \\",
   ],
-  $firstaction = 'undef',
-  $lastaction = 'undef',
 ) inherits httpd::params {
   include ::logrotate
 

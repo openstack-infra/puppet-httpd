@@ -29,19 +29,19 @@
 #  }
 #
 define httpd::vhost(
-    $port,
     $docroot,
+    $port,
+    $apache_name        = $httpd::params::apache_name,
+    $auth               = $httpd::params::auth,
     $configure_firewall = true,
+    $options            = $httpd::params::options,
+    $priority           = $httpd::params::priority,
+    $redirect_ssl       = $httpd::params::redirect_ssl,
+    $serveraliases      = $httpd::params::serveraliases,
+    $servername         = $httpd::params::servername,
     $ssl                = $httpd::params::ssl,
     $template           = $httpd::params::template,
-    $priority           = $httpd::params::priority,
-    $servername         = $httpd::params::servername,
-    $serveraliases      = $httpd::params::serveraliases,
-    $auth               = $httpd::params::auth,
-    $redirect_ssl       = $httpd::params::redirect_ssl,
-    $options            = $httpd::params::options,
-    $apache_name        = $httpd::params::apache_name,
-    $vhost_name         = $httpd::params::vhost_name
+    $vhost_name         = $httpd::params::vhost_name,
   ) {
 
   include ::httpd
