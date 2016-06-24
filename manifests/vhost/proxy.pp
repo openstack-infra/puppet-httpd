@@ -66,5 +66,11 @@ define httpd::vhost::proxy (
     notify  => Service['httpd'],
   }
 
-
+  # enable that setting, that allows httpd scripts and
+  # modules to connect to the network
+  if $::osfamily == 'RedHat' {
+    selinux::boolean { 'httpd_can_network_connect':
+      ensure => "on",
+    }
+  }
 }
