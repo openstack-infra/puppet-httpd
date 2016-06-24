@@ -72,6 +72,19 @@ define httpd::vhost(
     httpd::mod { 'version': ensure => present }
   }
 
+  # selinux may deny directory listing and access to subdirectories
+  # so update context to allow it
+  if $::osfamily == 'RedHat' {
+    if ! defined(Exec['update_context']) {
+      exec { 'update_context':
+        command => "chcon -R -t httpd_sys_content_t ${docroot}",
+        path    => '/bin:/usr/bin:/usr/local/bin',
+        require => Package['httpd'],
+        notify  => Service['httpd'],
+      }
+    }
+  }
+
   file { "${priority}-${name}.conf":
       path    => "${httpd::params::vdir}/${priority}-${name}.conf",
       content => template($template),

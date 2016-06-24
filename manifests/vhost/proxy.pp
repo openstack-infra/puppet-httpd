@@ -66,5 +66,16 @@ define httpd::vhost::proxy (
     notify  => Service['httpd'],
   }
 
+  if $::osfamily == 'RedHat' {
+    if ! defined(Exec['update_network_security']) {
+      exec { 'update_network_security':
+        command => 'setsebool httpd_can_network_connect 1',
+        path    => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
+        require => Package['httpd'],
+        notify  => Service['httpd'],
+      }
+    }
+  }
+
 
 }
