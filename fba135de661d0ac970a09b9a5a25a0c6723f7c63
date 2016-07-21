@@ -1,0 +1,9 @@
+Code-Review+2: Joshua Hesketh <joshua.hesketh@rackspace.com>
+Code-Review+2: Jeremy Stanley <fungi@yuggoth.org>
+Workflow+1: Jeremy Stanley <fungi@yuggoth.org>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Thu, 21 Jul 2016 02:28:31 +0000
+Reviewed-on: https://review.openstack.org/345049
+Project: openstack-infra/puppet-httpd
+Branch: refs/heads/master
