@@ -1,0 +1,9 @@
+Code-Review+2: Ricardo Carrillo Cruz <ricardo.carrillo.cruz@gmail.com>
+Code-Review+2: Monty Taylor <mordred@inaugust.com>
+Workflow+1: Monty Taylor <mordred@inaugust.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 12 Aug 2016 15:59:00 +0000
+Reviewed-on: https://review.openstack.org/345349
+Project: openstack-infra/puppet-httpd
+Branch: refs/heads/master
