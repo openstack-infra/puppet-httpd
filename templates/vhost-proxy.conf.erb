@@ -8,6 +8,9 @@ NameVirtualHost <%= @vhost_name %>:<%= @port %>
   SSLCertificateKeyFile <%= @ssl_path %>/private/pl.key
   <% end %>
   ServerName <%= @srvname %>
+<% if @serveradmin != nil -%>
+<%= "  ServerAdmin #{@serveradmin}" %>
+<% end -%>
 <% if @serveraliases.is_a? Array %>
 <% @serveraliases.each do |name| %><%= "  ServerAlias #{name}\n" %><% end %>
 <% elsif @serveraliases != nil %>
@@ -29,7 +32,7 @@ NameVirtualHost <%= @vhost_name %>:<%= @port %>
 <% end %>
    ProxyPass        / <%= @dest %>/
    ProxyPassReverse / <%= @dest %>/
-   ProxyPreserveHost On 
+   ProxyPreserveHost On
 
 <% if @proxyexclusions != nil and @docroot != nil %>
    DocumentRoot <%= @docroot %>

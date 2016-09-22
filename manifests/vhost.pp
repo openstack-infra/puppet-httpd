@@ -39,6 +39,7 @@ define httpd::vhost(
     $redirect_ssl       = $httpd::params::redirect_ssl,
     $serveraliases      = $httpd::params::serveraliases,
     $servername         = $httpd::params::servername,
+    $serveradmin        = $httpd::params::serveradmin,
     $ssl                = $httpd::params::ssl,
     $template           = $httpd::params::template,
     $vhost_name         = $httpd::params::vhost_name,

@@ -26,6 +26,7 @@ class httpd::params {
   $redirect_ssl  = false
   $serveraliases = undef
   $servername    = undef
+  $serveradmin   = undef
   $ssl           = true
   $template      = 'httpd/vhost-default.conf.erb'
   $user          = 'www-data'
