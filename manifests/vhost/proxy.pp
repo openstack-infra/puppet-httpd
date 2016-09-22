@@ -24,11 +24,12 @@ define httpd::vhost::proxy (
     $docroot         = undef,
     $priority        = '10',
     $proxyexclusions = undef,
-    $serveraliases   = undef,
-    $servername      = undef,
+    $serveraliases   = $httpd::params::serveraliases,
+    $servername      = $httpd::params::servername,
+    $serveradmin     = $httpd::params::serveradmin,
     $ssl             = false,
     $template        = 'httpd/vhost-proxy.conf.erb',
-    $vhost_name      = '*',
+    $vhost_name      = $httpd::params::vhost_name,
   ) {
 
   include ::httpd

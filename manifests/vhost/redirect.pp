@@ -21,14 +21,20 @@ define httpd::vhost::redirect (
     $port,
     $dest,
     $priority      = '10',
-    $serveraliases = undef,
+    $serveraliases = $httpd::params::serveraliases,
+    $servername    = $httpd::params::servername,
+    $serveradmin   = $httpd::params::serveradmin,
     $template      = 'httpd/vhost-redirect.conf.erb',
-    $vhost_name    = '*'
+    $vhost_name    = $httpd::params::vhost_name,
   ) {
 
   include ::httpd
 
-  $srvname = $name
+  if $servername == undef {
+    $srvname = $name
+  } else {
+    $srvname = $servername
+  }
 
   file { "${priority}-${name}":
     ensure => absent,
