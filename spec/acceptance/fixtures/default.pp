@@ -49,11 +49,3 @@ httpd::vhost::redirect { 'redirect':
 httpd::mod { 'rewrite':
   ensure => present,
 }
-
-case $::operatingsystem {
-  'ubuntu', 'debian': {
-    class { '::httpd::python': }
-  }
-  default: {}
-}
-
