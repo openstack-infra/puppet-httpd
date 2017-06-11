@@ -86,7 +86,7 @@ describe 'puppet-httpd module' do
         package('apache2-dev'),
         package('libaprutil1-dev'),
         package('libapr1-dev'),
-        package('libapache2-mod-php5'),
+        package('libapache2-mod-php7.0'),
         package('libapache2-mod-python'),
       ]
 
