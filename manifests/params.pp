@@ -43,7 +43,10 @@ class httpd::params {
     }
     'ubuntu', 'debian': {
       $apache_name = 'apache2'
-      $php_package = 'libapache2-mod-php5'
+      $php_package = $::lsbdistcodename ? {
+        'xenial' => 'libapache2-mod-php7.0',
+        default => 'libapache2-mod-php5'
+      }
       $mod_python_package = 'libapache2-mod-python'
       $mod_wsgi_package = 'libapache2-mod-wsgi'
       $ssl_package = 'apache-ssl'
