@@ -21,10 +21,18 @@ class httpd {
   }
 
   service { 'httpd':
-    ensure    => running,
-    name      => $httpd::params::apache_name,
-    enable    => true,
-    subscribe => Package['httpd'],
+    ensure     => running,
+    name       => $httpd::params::apache_name,
+    enable     => true,
+    subscribe  => Package['httpd'],
+    hasrestart => true,
+  }
+
+  exec { 'httpd-reload':
+    command     => "service ${httpd::params::apache_name} reload",
+    path        => ['/usr/bin', '/usr/sbin'],
+    refreshonly => true,
+    require     => Service['httpd'],
   }
 
   file { 'httpd_vdir':
