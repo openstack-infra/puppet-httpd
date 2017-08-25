@@ -94,7 +94,7 @@ define httpd::vhost(
       group   => 'root',
       mode    => '0755',
       require => Package['httpd'],
-      notify  => Service['httpd'],
+      notify  => Exec['httpd-reload'],
   }
 
   if $configure_firewall {
