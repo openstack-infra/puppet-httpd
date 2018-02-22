@@ -33,6 +33,13 @@ NameVirtualHost <%= @vhost_name %>:<%= @port %>
 
 <% if @proxyexclusions != nil and @docroot != nil %>
    DocumentRoot <%= @docroot %>
+   <Directory <%= @docroot %>>
+     Order deny,allow
+     Allow from all
+    <IfVersion >= 2.4>
+      Require all granted
+    </IfVersion>
+   </Directory>
 <% end %>
    ErrorLog /var/log/<%= scope.lookupvar("httpd::params::apache_name") %>/<%= @name %>_error.log
    LogLevel warn
