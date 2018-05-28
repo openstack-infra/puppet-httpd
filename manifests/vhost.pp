@@ -10,6 +10,8 @@
 #   a firewall should be configured.
 # - The $template option specifies whether to use the default template or
 #   override
+# - The $content option specifies the exact content of the vhost file;
+#   overrides the template parameter
 # - The $priority of the site
 # - The $serveraliases of the site
 # - The $options for the given vhost
@@ -41,6 +43,7 @@ define httpd::vhost(
     $servername         = $httpd::params::servername,
     $ssl                = $httpd::params::ssl,
     $template           = $httpd::params::template,
+    $content            = undef,
     $vhost_name         = $httpd::params::vhost_name,
   ) {
 
@@ -87,9 +90,14 @@ define httpd::vhost(
     }
   }
 
+  if $content != undef {
+    $_content = $content
+  } else {
+    $_content = template($template)
+  }
   file { "${priority}-${name}.conf":
       path    => "${httpd::params::vdir}/${priority}-${name}.conf",
-      content => template($template),
+      content => $_content,
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
