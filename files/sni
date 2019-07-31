@@ -1,4 +1,0 @@
-# Enable SNI for HTTPS (this breaks HTTPS sites for MSIE on WinXP)
-<IfModule mod_ssl.c>
-    NameVirtualHost *:443
-</IfModule>
